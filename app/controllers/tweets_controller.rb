@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:edit, :show, :update, :destroy]
   before_action :check_currentuser, only: [:update, :destroy]
-  before_action :move_to_index, except: :index
+  # before_action :move_to_index, except: [:index]
 
   def index
     @tweets = Tweet.includes(:user).page(params[:page]).per(5).order("created_at DESC")
