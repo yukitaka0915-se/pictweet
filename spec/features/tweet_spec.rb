@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 feature 'tweet', type: :feature do
-# このブロックの内部にscenarioを記述していく
+  let(:user) { create(:user) }
+
   scenario 'post tweet' do
     # ログイン前には投稿ボタンがない
     visit root_path
@@ -23,7 +24,5 @@ feature 'tweet', type: :feature do
       fill_in 'text', with: 'フィーチャスペックのテスト'
       find('input[type="submit"]').click
     }.to change(Tweet, :count).by(1)
-
   end
-
 end
