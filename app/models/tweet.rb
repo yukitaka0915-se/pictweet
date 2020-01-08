@@ -5,6 +5,8 @@ class Tweet < ApplicationRecord
 
   def self.search(search)
     return Tweet.all unless search
-    Tweet.where('text LIKE(?)', "%#{search}%")
+    # Tweet.where('text LIKE(?)', "%#{search}%")
+    search = "%#{search}%"
+    Tweet.find_by_sql(["select * from tweets where text like ? ", search])
   end
 end
